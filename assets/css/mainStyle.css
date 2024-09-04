@@ -1,0 +1,84 @@
+main {
+    max-width: 1500px;
+    width: 95%;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+main .card {
+    max-width: 70%;
+    text-align: center;
+    height: 350px;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main .card .image {
+    height: 50%;
+    margin-bottom: 20px;
+}
+
+main .card .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main .card .caption {
+    padding-left: 1em;
+    text-align: left;
+    line-height: 1.5em;
+    height: 25%;
+}
+
+main .card .caption p {
+    font-size: 1rem;
+    margin: 0.5em 0;
+}
+
+main .card .caption {
+    padding-left: 1em;
+    text-align: left;
+    line-height: 1.5em;
+    height: 25%;
+}
+
+main .card .caption p {
+    font-size: 1rem;
+    margin: 0.5em 0;
+}
+
+main .card .caption .rate {
+    display: flex;
+}
+
+main .card .caption .rate i {
+    color: gold;
+    margin-left: 2px;
+}
+
+main .card .caption .price-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Adjusts the space between the price and the old price */
+}
+
+main .card .caption .price {
+    font-weight: bold;
+    color: #000;
+}
+
+main .card .caption .discount {
+    font-weight: bold;
+    color: #888;
+    text-decoration: line-through;
+}
+
+#btnAddToCart {
+    margin: 10px;
+}
