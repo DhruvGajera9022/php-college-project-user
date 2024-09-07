@@ -147,6 +147,27 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val(); // Get the input value
+            if (query.length > 1) { // Minimum 2 characters to search
+                $.ajax({
+                    url: 'searchProduct.php',
+                    method: 'POST',
+                    data: { search: query },
+                    success: function(response) {
+                        // Update the product container with the search results
+                        $('#product-container').html(response);
+                    }
+                });
+            } else {
+                // If input is less than 2 characters, you can reload the original product list or clear the result
+                $('#product-container').html('');
+            }
+        });
+    });
+</script>
 
 <!-- <script>
     $(function() {

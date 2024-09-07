@@ -26,6 +26,18 @@ if ($id) {
     $fname = "User";
 }
 
+if(isset($_REQUEST['pid'])){
+    $pid = $_REQUEST['pid'];
+
+    $query = "DELETE FROM tblcart WHERE id = '$pid' ";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        header('location: cart.php');
+    }
+
+}
+
 $selectCartProduct = $conn->prepare("SELECT * FROM tblcart WHERE uid = ?");
 $selectCartProduct->bind_param("i", $id);
 $selectCartProduct->execute();
@@ -107,7 +119,7 @@ $title = "Cart";
                                                     <div style="width: 90px;">
                                                         <h5 class="mb-0">Rs.<?php echo $row['newprice']; ?></h5>
                                                     </div>
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                    <a href="cart.php?pid=<?php echo $row['id'];?>" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,22 +183,22 @@ $title = "Cart";
 
                                         <div class="d-flex justify-content-between">
                                             <p class="mb-2">Subtotal</p>
-                                            <p class="mb-2">$4798.00</p>
+                                            <p class="mb-2">Rs. 300000</p>
                                         </div>
 
                                         <div class="d-flex justify-content-between">
                                             <p class="mb-2">Shipping</p>
-                                            <p class="mb-2">$20.00</p>
+                                            <p class="mb-2">Rs. 00</p>
                                         </div>
 
                                         <div class="d-flex justify-content-between mb-4">
                                             <p class="mb-2">Total(Incl. taxes)</p>
-                                            <p class="mb-2">$4818.00</p>
+                                            <p class="mb-2">Rs. 300000</p>
                                         </div>
 
                                         <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-block btn-lg">
                                             <div class="d-flex justify-content-between">
-                                                <span>$4818.00</span>
+                                                <span>Rs. 300000</span>
                                                 <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                             </div>
                                         </button>

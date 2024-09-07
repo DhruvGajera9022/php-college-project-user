@@ -97,6 +97,17 @@ if (isset($_GET['pid'])) {
     }
 }
 
+if (isset($_POST['search'])) {
+    $searchTerm = $_POST['search'];
+    $searchTerm = "%" . $searchTerm . "%";
+
+    // Query to search products by name
+    $stmt = $conn->prepare("SELECT * FROM tblmaster WHERE name LIKE ?");
+    $stmt->bind_param("s", $searchTerm);
+    $stmt->execute();
+    $result = $stmt->get_result();
+}
+
 
 if ($id) {
     // Retrieve the total number of products in the cart
