@@ -1,30 +1,6 @@
 <?php
 
-require_once 'database/config.php';
-session_start();
-
-// Redirect to login page if the user is not authenticated
-// if (!isset($_SESSION['id'])) {
-//     header("Location: login.php");
-//     exit;
-// }
-
-$id = $_SESSION['id'];
-
-// Retrieve user details from the database
-if ($id) {
-    $sqlSelect = $conn->prepare("SELECT * FROM tbluser WHERE id = ?");
-    $sqlSelect->bind_param("i", $id);
-    $sqlSelect->execute();
-    $res = $sqlSelect->get_result();
-    $data = $res->fetch_assoc();
-
-    $image = $data['image'];
-    $fname = $data['fname'];
-} else {
-    $image = "avatar.png";
-    $fname = "User";
-}
+include_once('userdata.php');
 
 if(isset($_REQUEST['pid'])){
     $pid = $_REQUEST['pid'];
@@ -43,18 +19,7 @@ $selectCartProduct->bind_param("i", $id);
 $selectCartProduct->execute();
 $allProduct = $selectCartProduct->get_result();
 
-if ($id) {
-    // Retrieve the total number of products in the cart
-    $sqlSelectCart = $conn->prepare("SELECT COUNT(*) as total FROM tblcart WHERE uid = ?");
-    $sqlSelectCart->bind_param("i", $id);
-    $sqlSelectCart->execute();
-    $res = $sqlSelectCart->get_result();
-    $dataCart = $res->fetch_assoc();
 
-    $totalProductsInCart = $dataCart['total'];
-} else {
-    $totalProductsInCart = 0;
-}
 
 $title = "Cart";
 
